@@ -12,14 +12,13 @@ fetch('quotes.txt')
   })
   .catch(err => console.error('Failed to load quotes:', err));
 
-// Automatically load all screenshots in the /screenshots/ folder
-// You need to maintain a predictable naming like 1.jpg, 2.jpg, etc.
+// Load screenshots automatically from /screenshots/ (1.jpg, 2.jpg, ...)
 const screenshotsContainer = document.getElementById('screenshots-container');
-const screenshotCount = 20; // Adjust this to the max number of images you expect
+const screenshotCount = 20; // adjust as needed
 
 for (let i = 1; i <= screenshotCount; i++) {
   const img = document.createElement('img');
   img.src = `screenshots/${i}.jpg`;
-  img.onerror = () => img.remove(); // Remove if image doesn't exist
+  img.onerror = () => img.remove(); // remove missing images
   screenshotsContainer.appendChild(img);
 }
