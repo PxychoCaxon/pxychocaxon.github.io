@@ -1,4 +1,4 @@
-/* Basic Reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,55 +6,63 @@
 }
 
 body {
-    background-color: #0d0d0d;
-    color: #f0f0f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
     padding: 20px;
+    overflow-x: hidden;
 }
 
+/* Header */
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-h1 {
+header h1 {
     font-size: 3rem;
-    color: #ff00ff;
-    text-shadow: 2px 2px 5px #000;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
+/* Section titles */
 h2 {
-    margin-bottom: 20px;
-    color: #ff77ff;
-    border-bottom: 2px solid #333;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #fff;
     display: inline-block;
     padding-bottom: 5px;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-}
-
+/* Quotes list */
 #quotes-list {
     list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 #quotes-list li {
-    background: #1a1a1a;
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    border-left: 5px solid #ff00ff;
-    border-radius: 8px;
-    transition: transform 0.2s;
+    background: #111;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
 #quotes-list li:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
+/* Screenshots container */
 #screenshots-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -64,16 +72,30 @@ main {
 #screenshots-container img {
     width: 100%;
     border-radius: 12px;
-    border: 2px solid #ff00ff;
-    transition: transform 0.2s;
+    border: 2px solid #fff;
+    object-fit: cover;
+    transition: transform 0.3s, filter 0.3s;
 }
 
 #screenshots-container img:hover {
     transform: scale(1.05);
+    filter: brightness(1.2);
 }
 
+/* Footer */
 footer {
     text-align: center;
-    margin-top: 50px;
-    color: #888;
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
 }
