@@ -1,8 +1,8 @@
-// Load quotes from quotes.txt
+// ===== Load quotes =====
 fetch('quotes.txt')
   .then(response => response.text())
   .then(text => {
-    const quotes = text.match(/"([^"]+)"/g).map(q => q.replace(/"/g, ''));
+    const quotes = text.match(/"([^"]+)"/g)?.map(q => q.replace(/"/g, '')) || [];
     const quotesList = document.getElementById('quotes-list');
     quotes.forEach(quote => {
       const li = document.createElement('li');
@@ -12,13 +12,18 @@ fetch('quotes.txt')
   })
   .catch(err => console.error('Failed to load quotes:', err));
 
-// Load screenshots automatically from /screenshots/ (1.jpg, 2.jpg, ...)
-const screenshotsContainer = document.getElementById('screenshots-container');
-const screenshotCount = 20; // adjust as needed
+// ===== Load screenshots =====
+fetch('screenshots.txt')
+  .then(response => response.text())
+  .then(text => {
+    const files = text.split(/\r?\n/).filter(f => f.trim() !== '');
+    const container = document.getElementById('screenshots-container');
 
-for (let i = 1; i <= screenshotCount; i++) {
-  const img = document.createElement('img');
-  img.src = `screenshots/${i}.jpg`;
-  img.onerror = () => img.remove(); // remove missing images
-  screenshotsContainer.appendChild(img);
-}
+    files.forEach(file => {
+      const img = document.createElement('img');
+      img.src = `screenshots/${file}`;
+      img.onerror = () => img.remove(); // remove broken images
+      container.appendChild(img);
+    });
+  })
+  .catch(err => console.error('Failed to load screenshots:', err));
