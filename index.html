@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal</title>
+    <title>Caxon Terminal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="matrix-canvas"></canvas>
+    
     <div class="crt-overlay"></div>
+    
     <div class="terminal-window">
         <div class="terminal-header">
             <div class="buttons">
@@ -22,7 +25,7 @@
             <div id="output"></div>
             <div class="input-line">
                 <span class="prompt">caxon@profile:~$</span>
-                <input type="text" id="command-input" autofocus spellcheck="false">
+                <input type="text" id="command-input" autofocus spellcheck="false" autocomplete="off">
             </div>
         </div>
     </div>
