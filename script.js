@@ -61,7 +61,7 @@ input.addEventListener('keydown', (e) => {
         
         const line = document.createElement('div');
         line.className = 'user-line';
-        line.innerHTML = `<span style="color:var(--prompt-color)">caxon@profile:~$</span> ${fullCmd}`;
+        line.innerHTML = `<span style="color:var(--prompt-color)">caxon@life:~$</span> ${fullCmd}`;
         output.appendChild(line);
 
         const responseWrapper = document.createElement('div');
@@ -134,4 +134,5 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
