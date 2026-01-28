@@ -28,7 +28,7 @@ let history = [];
 let historyIdx = -1;
 
 function displayFastFetch() {
-    const logo = ` ██████╗ ██╗  ██╗     ☄
+    const logo = ` ██████╗ ██╗  ██╗    ☄
  ██╔══██╗╚██╗██╔╝    °
  ██████╔╝ ╚███╔╝    °
  ██╔═══╝  ██╔██╗   °
@@ -44,21 +44,16 @@ function displayFastFetch() {
 
     const div = document.createElement('div');
     div.className = 'fastfetch';
-    div.innerHTML = `
-        <pre class="ascii">${logo}</pre>
-        <div class="info">${info}</div>
-    `;
+    div.innerHTML = `<pre class="ascii">${logo}</pre><div class="info">${info}</div>`;
     output.appendChild(div);
 }
 
-// Initialization
 window.onload = () => {
     displayFastFetch();
     input.focus();
     initMatrix();
 };
 
-// Command Handler
 input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const fullCmd = input.value.trim();
@@ -89,19 +84,14 @@ input.addEventListener('keydown', (e) => {
             history.push(fullCmd);
             historyIdx = history.length;
         }
-        
         input.value = '';
-        setTimeout(() => {
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-        }, 10);
+        setTimeout(() => { terminalBody.scrollTop = terminalBody.scrollHeight; }, 10);
     }
     
-    if (e.key === 'ArrowUp') {
-        if (historyIdx > 0) {
-            historyIdx--;
-            input.value = history[historyIdx];
-        }
-        e.preventDefault(); 
+    if (e.key === 'ArrowUp' && historyIdx > 0) {
+        historyIdx--;
+        input.value = history[historyIdx];
+        e.preventDefault();
     }
     if (e.key === 'ArrowDown') {
         if (historyIdx < history.length - 1) {
@@ -115,14 +105,12 @@ input.addEventListener('keydown', (e) => {
     }
 });
 
-// --- Matrix Background ---
 function initMatrix() {
     const canvas = document.getElementById('matrix-canvas');
+    if(!canvas) return;
     const ctx = canvas.getContext('2d');
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
     const fontSize = 16;
     const columns = canvas.width / fontSize;
@@ -131,25 +119,18 @@ function initMatrix() {
     function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#222"; // Dim grey for a stealth look
+        ctx.fillStyle = "#222";
         ctx.font = fontSize + "px monospace";
-
         for (let i = 0; i < drops.length; i++) {
             const text = chars.charAt(Math.floor(Math.random() * chars.length));
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
             drops[i]++;
         }
     }
-
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
-
     setInterval(draw, 35);
 }
