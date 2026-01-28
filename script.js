@@ -17,7 +17,8 @@ const commands = {
         if (args == 'README.txt') return "available commands: whoami, ls, cat, fastfetch, clear, social";
         if (args == 'aliases.txt') return "cax, cakeson, cake, pxy, pxffy, batman";
         return `File not found: ${args}`;
-    }
+    },
+    contact: () => "Redirecting to email... [mailto:hello@example.com]"
 };
 
 const input = document.getElementById('command-input');
@@ -54,6 +55,7 @@ function displayFastFetch() {
 window.onload = () => {
     displayFastFetch();
     input.focus();
+    initMatrix();
 };
 
 // Command Handler
@@ -63,22 +65,24 @@ input.addEventListener('keydown', (e) => {
         const [cmd, ...args] = fullCmd.split(' ');
         
         const line = document.createElement('div');
+        line.className = 'user-line';
         line.innerHTML = `<span style="color:var(--prompt-color)">caxon@profile:~$</span> ${fullCmd}`;
         output.appendChild(line);
+
+        const responseWrapper = document.createElement('div');
+        responseWrapper.className = 'command-output';
 
         if (cmd === 'clear') {
             output.innerHTML = '';
         } else if (cmd === 'fastfetch') {
             displayFastFetch();
         } else if (commands[cmd]) {
-            const result = document.createElement('div');
-            result.style.marginBottom = "15px";
-            result.innerText = commands[cmd](args.join(' '));
-            output.appendChild(result);
+            responseWrapper.innerText = commands[cmd](args.join(' '));
+            output.appendChild(responseWrapper);
         } else if (cmd !== '') {
-            const error = document.createElement('div');
-            error.innerText = `command not found: ${cmd}`;
-            output.appendChild(error);
+            responseWrapper.innerText = `command not found: ${cmd}`;
+            responseWrapper.style.color = "#ff6666";
+            output.appendChild(responseWrapper);
         }
 
         if (fullCmd) {
@@ -87,15 +91,17 @@ input.addEventListener('keydown', (e) => {
         }
         
         input.value = '';
-        terminalBody.scrollTop = terminalBody.scrollHeight;
+        setTimeout(() => {
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }, 10);
     }
     
-    // History (Up/Down Arrows)
     if (e.key === 'ArrowUp') {
         if (historyIdx > 0) {
             historyIdx--;
             input.value = history[historyIdx];
         }
+        e.preventDefault(); 
     }
     if (e.key === 'ArrowDown') {
         if (historyIdx < history.length - 1) {
@@ -105,5 +111,45 @@ input.addEventListener('keydown', (e) => {
             historyIdx = history.length;
             input.value = '';
         }
+        e.preventDefault();
     }
 });
+
+// --- Matrix Background ---
+function initMatrix() {
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#222"; // Dim grey for a stealth look
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars.charAt(Math.floor(Math.random() * chars.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    setInterval(draw, 35);
+}
