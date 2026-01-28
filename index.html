@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Terminal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="mobile-blocker">
+        <div class="glitch-wrapper">
+            <p class="glitch" data-text="ACCESS DENIED">Open this site on a PC</p>
+            <span class="sub-text">(desktop mode doesn't work properly. trust me.)</span>
+        </div>
+    </div>
+
     <canvas id="matrix-canvas"></canvas>
-    
     <div class="crt-overlay"></div>
     
     <div class="terminal-window">
@@ -18,13 +24,13 @@
                 <span class="minimize"></span>
                 <span class="maximize"></span>
             </div>
-            <div class="title">caxon@profile: ~</div>
+            <div class="title">caxon@life: ~</div>
         </div>
         
         <div class="terminal-body" id="terminal-body">
             <div id="output"></div>
             <div class="input-line">
-                <span class="prompt">caxon@profile:~$</span>
+                <span class="prompt">caxon@life:~$</span>
                 <input type="text" id="command-input" autofocus spellcheck="false" autocomplete="off">
             </div>
         </div>
@@ -33,4 +39,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
