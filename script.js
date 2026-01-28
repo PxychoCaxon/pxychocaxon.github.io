@@ -28,7 +28,7 @@ let history = [];
 let historyIdx = -1;
 
 function displayFastFetch() {
-    const logo = ` ██████╗ ██╗  ██╗    ☄
+    const logo = ` ██████╗ ██╗  ██╗     ☄
  ██╔══██╗╚██╗██╔╝    °
  ██████╔╝ ╚███╔╝    °
  ██╔═══╝  ██╔██╗   °
@@ -134,3 +134,4 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
