@@ -18,7 +18,7 @@ const commands = {
     cat: (args) => {
         if (args === 'skills.txt') return `${config.skills}`;
         if (args == 'README.txt') return "available commands:    whoami,    ls,    cat,    fastfetch,    clear";
-        if (args == 'aliases.txt') return "cax, cakeson, cake, pxy, pxffy, batman";
+        if (args == 'aliases.txt') return "cax,    cakeson,    cake,    psy,    pxffy,    batman";
         return `File not found: ${args}`;
     },
 };
@@ -136,6 +136,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
