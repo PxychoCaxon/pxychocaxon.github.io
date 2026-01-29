@@ -13,16 +13,14 @@ const commands = {
         if (args == ".") return "aliases.txt README.txt skills.txt";
         if (args == "") return "aliases.txt README.txt skills.txt";
         if (args == " ") return "aliases.txt README.txt skills.txt";
-        return `${args} is not a valid directory.`;
+        return `${args} is not a valid directory`;
     },
-    social: () => "discord: pxychocaxon | github: @PxychoCaxon",
     cat: (args) => {
         if (args === 'skills.txt') return `${config.skills}`;
-        if (args == 'README.txt') return "available commands: whoami, ls, cat, fastfetch, clear, social";
+        if (args == 'README.txt') return "available commands:    whoami,    ls,    cat,    fastfetch,    clear";
         if (args == 'aliases.txt') return "cax, cakeson, cake, pxy, pxffy, batman";
         return `File not found: ${args}`;
     },
-    contact: () => "Redirecting to email... [mailto:hello@example.com]"
 };
 
 const input = document.getElementById('command-input');
@@ -138,6 +136,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
