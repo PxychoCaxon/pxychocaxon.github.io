@@ -8,9 +8,13 @@ const config = {
 };
 
 const commands = {
-    man: () => "Available commands: whoami, ls, cat, fastfetch, clear, contact, social",
     whoami: () => config.user,
-    ls: () => "aliases.txt README.txt skills.txt",
+    ls: (args) => {
+        if (args == ".") return "aliases.txt README.txt skills.txt";
+        if (args == "") return "aliases.txt README.txt skills.txt";
+        if (args == " ") return "aliases.txt README.txt skills.txt";
+        return `${args} is not a valid directory.`;
+    },
     social: () => "discord: pxychocaxon | github: @PxychoCaxon",
     cat: (args) => {
         if (args === 'skills.txt') return `${config.skills}`;
@@ -134,5 +138,6 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
