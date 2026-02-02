@@ -9,20 +9,50 @@ const config = {
 
 const commands = {
     whoami: () => config.user,
+    
     ls: (args) => {
-        if (args == ".") return "aliases.txt README.txt skills.txt";
-        if (args == "") return "aliases.txt README.txt skills.txt";
-        if (args == " ") return "aliases.txt README.txt skills.txt";
+        const files = "aliases.txt    README.txt    skills.txt";
+        if (args === "" || args === "." || args === " ") return files;
         return `${args} is not a valid directory`;
     },
+
     cat: (args) => {
-        if (args === 'skills.txt') return `${config.skills}`;
-        if (args == 'README.txt') return "available commands:    whoami,    ls,    cat,    fastfetch,    clear";
-        if (args == 'aliases.txt') return "cax,    cakeson,    cake,    psy,    pxffy,    batman";
+        if (args === 'skills.txt') return config.skills;
+        if (args === 'README.txt') return "available commands: whoami, ls, cat, note, fastfetch, clear";
+        if (args === 'aliases.txt') return "cax, cakeson, cake, psy, pxffy, batman";
         return `File not found: ${args}`;
     },
+
+    note: (args) => {
+        const parts = args.trim().split(' ');
+        const repoUrl = "https://github.com/PxychoCaxon/pxychocaxon.github.io/issues";
+
+        // View existing notes
+        if (parts[0] === 'view') {
+            window.open(repoUrl, '_blank');
+            return "Opening notes index on GitHub...";
+        }
+
+        // Help text if they don't provide enough arguments
+        if (parts.length < 2) {
+            return "Usage:\n  note [your_name] [your_message]\n (You need a GitHub account to post a note. This will create a GitHub issue.)";
+        }
+
+        const name = parts[0];
+        const message = parts.slice(1).join(' ');
+
+        // Construct GitHub Issue URL with pre-filled fields
+        // title: "Note from [Name]"
+        // body: "[Message]"
+        const submitUrl = `${repoUrl}/new?title=${encodeURIComponent("Note from " + name)}&body=${encodeURIComponent(message)}`;
+        
+        window.open(submitUrl, '_blank');
+
+        return `Redirecting to GitHub to finalize note from ${name}...`;
+    }
 };
 
+// --- Terminal Engine ---
 const input = document.getElementById('command-input');
 const output = document.getElementById('output');
 const terminalBody = document.getElementById('terminal-body');
@@ -30,7 +60,7 @@ let history = [];
 let historyIdx = -1;
 
 function displayFastFetch() {
-    const logo = ` ██████╗ ██╗  ██╗     ☄
+    const logo = ` ██████╗ ██╗  ██╗      ☄
  ██╔══██╗╚██╗██╔╝    °
  ██████╔╝ ╚███╔╝    °
  ██╔═══╝  ██╔██╗   °
@@ -59,7 +89,8 @@ window.onload = () => {
 input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const fullCmd = input.value.trim();
-        const [cmd, ...args] = fullCmd.split(' ');
+        const [cmd, ...argsArr] = fullCmd.split(' ');
+        const args = argsArr.join(' ');
         
         const line = document.createElement('div');
         line.className = 'user-line';
@@ -74,7 +105,7 @@ input.addEventListener('keydown', (e) => {
         } else if (cmd === 'fastfetch') {
             displayFastFetch();
         } else if (commands[cmd]) {
-            responseWrapper.innerText = commands[cmd](args.join(' '));
+            responseWrapper.innerText = commands[cmd](args);
             output.appendChild(responseWrapper);
         } else if (cmd !== '') {
             responseWrapper.innerText = `command not found: ${cmd}`;
@@ -107,6 +138,7 @@ input.addEventListener('keydown', (e) => {
     }
 });
 
+// --- Background Matrix Effect ---
 function initMatrix() {
     const canvas = document.getElementById('matrix-canvas');
     if(!canvas) return;
@@ -136,8 +168,3 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
-
-
-
-
-
