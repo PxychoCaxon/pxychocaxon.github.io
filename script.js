@@ -30,7 +30,7 @@ const commands = {
         const parts = args.trim().split(' ');
         
         if (parts.length < 2) {
-            return "Functionality: this command sends a private note to me that i can view.\nUsage: note [your_name] [your_message]\nExample: note alex caxon ilysm omgomgjfjfr what a cool site!";
+            return "Functionality: this command sends a private note to me that i can view.\nUsage: note [your_name] [your_message]\nExample: note alex hey bro ilysm omgomgjfjfr what a cool site bro.";
         }
 
         const name = parts[0];
@@ -59,7 +59,7 @@ const commands = {
                 body: JSON.stringify(payload)
             });
 
-            return `Message sent to the void (aka Caxon's Discord). Thanks, ${name}!`;
+            return `message sent.`;
         } catch (e) {
             return "Error: Webhook string is invalid. Check your Base64 encoding.";
         }
@@ -183,3 +183,4 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
