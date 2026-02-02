@@ -7,6 +7,9 @@ const config = {
     skills: "pretty much everything you can imagine"
 };
 
+
+const _0x1a2b = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ2NzkwMzI0MTA1MTMwODE5Mi9PM2NLeHlkeWNSVDVvZXM1VjBmYXZ1dTFQV0U1SkpwMGc4RXBsRG93TmFyOGt5ZGhMUE1oTzhVTnNDQTRWbTJzOG03SA==";
+
 const commands = {
     whoami: () => config.user,
     
@@ -25,30 +28,41 @@ const commands = {
 
     note: (args) => {
         const parts = args.trim().split(' ');
-        const repoUrl = "https://github.com/PxychoCaxon/pxychocaxon.github.io/issues";
-
-        // View existing notes
-        if (parts[0] === 'view') {
-            window.open(repoUrl, '_blank');
-            return "Opening notes index on GitHub...";
-        }
-
-        // Help text if they don't provide enough arguments
+        
         if (parts.length < 2) {
-            return "Usage:\n  note [your_name] [your_message]\n (You need a GitHub account to post a note. This will create a GitHub issue.)";
+            return "Functionality: this command sends a private note to me that i can view.\nUsage: note [your_name] [your_message]\nExample: note alex caxon ilysm omgomgjfjfr what a cool site!";
         }
 
         const name = parts[0];
         const message = parts.slice(1).join(' ');
 
-        // Construct GitHub Issue URL with pre-filled fields
-        // title: "Note from [Name]"
-        // body: "[Message]"
-        const submitUrl = `${repoUrl}/new?title=${encodeURIComponent("Note from " + name)}&body=${encodeURIComponent(message)}`;
-        
-        window.open(submitUrl, '_blank');
+        try {
+            // Decode the webhook URL only when needed
+            const hook = atob(_0x1a2b);
 
-        return `Redirecting to GitHub to finalize note from ${name}...`;
+            const payload = {
+                embeds: [{
+                    title: "New Note",
+                    color: 0x00ff00, // Green border in Discord
+                    fields: [
+                        { name: "From", value: `\`${name}\``, inline: true },
+                        { name: "Message", value: message }
+                    ],
+                    footer: { text: "Sent from pxychocaxon.github.io" },
+                    timestamp: new Date()
+                }]
+            };
+
+            fetch(hook, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            return `Message sent to the void (aka Caxon's Discord). Thanks, ${name}!`;
+        } catch (e) {
+            return "Error: Webhook string is invalid. Check your Base64 encoding.";
+        }
     }
 };
 
@@ -105,6 +119,7 @@ input.addEventListener('keydown', (e) => {
         } else if (cmd === 'fastfetch') {
             displayFastFetch();
         } else if (commands[cmd]) {
+            // Using innerText to prevent XSS (injection)
             responseWrapper.innerText = commands[cmd](args);
             output.appendChild(responseWrapper);
         } else if (cmd !== '') {
