@@ -23,7 +23,7 @@ const commands = {
         if (args === 'skills.txt') return config.skills;
         if (args === 'README.txt') return "available commands: whoami, ls, cat, note, fastfetch, clear";
         if (args === 'aliases.txt') return "cax, caxie, cakeson, cake, psy, pxffy, batman";
-        if (args === 'secrets.txt') return "1. my password is very obvious\n2. the more i live the more i keep lose my tolerance\n3. i maintain a mad scientist's diary and a dream journal irl (ask for sneak peeks) \n4. i once rm rf-ed a live system\n5. i like pixel art";
+        if (args === 'secrets.txt') return "1. my password is very obvious\n2. the more i live the more i keep lose my tolerance\n3. i maintain a mad scientist's diary and a dream journal irl (ask for sneak peeks) \n4. i once rm rf-ed a live system\n5. i like pixel art\n6. my ip address is 192.168.0.1 (LOL)";
         return `File not found: ${args}`;
     },
 
@@ -184,6 +184,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
