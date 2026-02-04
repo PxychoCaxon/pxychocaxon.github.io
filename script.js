@@ -4,7 +4,7 @@ const config = {
     kernel: "5.15.0-human-stable",
     uptime: "few years, many days",
     shell: "bash",
-    skills: "pretty much everything you can imagine"
+    skills: "skills may include:\n- things i shouldn't have touched\n- things i touched anyway\n- things i now understand deeply"
 };
 
 
@@ -184,6 +184,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
