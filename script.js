@@ -31,7 +31,7 @@ const commands = {
         const parts = args.trim().split(' ');
         
         if (parts.length < 2) {
-            return "Functionality: this command sends a private note to me that i can view.\nUsage: note [your_name] [your_message]\nExample: note alex hey bro ilysm omgomgjfjfr what a cool site bro.";
+            return "Functionality: this command sends a private note to me that i can view.\nUsage: note [your_name] [your_message]\nExample: note alex hey bro im alex bro i swear STOP IGNORING ME AND REPLY TO MY DMS";
         }
 
         const name = parts[0];
@@ -184,6 +184,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
