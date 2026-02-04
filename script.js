@@ -1,7 +1,7 @@
 const config = {
     user: "caxon",
-    distro: "life",
-    kernel: "5.15.0-human-stable",
+    distro: "life-rolling",
+    kernel: "6.19-rc7-human-stable-ish",
     uptime: "few years, many days",
     shell: "bash",
     skills: "skills may include:\n- things i shouldn't have touched\n- things i touched anyway\n- things i now understand deeply"
@@ -109,7 +109,7 @@ input.addEventListener('keydown', (e) => {
         
         const line = document.createElement('div');
         line.className = 'user-line';
-        line.innerHTML = `<span style="color:var(--prompt-color)">caxon@life:~$</span> ${fullCmd}`;
+        line.innerHTML = `<span style="color:var(--prompt-color)">caxon@local:~$</span> ${fullCmd}`;
         output.appendChild(line);
 
         const responseWrapper = document.createElement('div');
@@ -184,6 +184,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
