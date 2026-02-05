@@ -1,7 +1,7 @@
 const config = {
     user: "caxon",
     distro: "life-rolling",
-    kernel: "6.19-human-stable-ish",
+    kernel: "6.19-human-stable (ish)",
     uptime: "few years, many days",
     shell: "bash"
 };
@@ -182,6 +182,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
