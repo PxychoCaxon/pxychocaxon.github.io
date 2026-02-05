@@ -13,7 +13,7 @@ const commands = {
     whoami: () => config.user,
     
     ls: (args) => {
-        const files = "aliases.txt    README.txt    skills.txt    secrets.txt";
+        const files = "aliases.txt    README.txt    secrets.txt";
         if (args === "" || args === "." || args === " ") return files;
         return `${args} is not a valid directory`;
     },
@@ -182,6 +182,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
