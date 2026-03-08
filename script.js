@@ -87,7 +87,7 @@ function displayFastFetch() {
 <div><b>KERNEL</b>: ${config.kernel}</div>
 <div><b>UPTIME</b>: ${config.uptime}</div>
 <div><b>SHELL</b>: ${config.shell}</div>
-<div><b>INTERESTS</b>: ${config.interests}</div>`.trim();
+<div><b>LIKES</b>: ${config.likes}</div>`.trim();
 
     const div = document.createElement('div');
     div.className = 'fastfetch';
@@ -184,4 +184,5 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
