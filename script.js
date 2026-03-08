@@ -1,9 +1,10 @@
 const config = {
     user: "caxon",
+    shell: "bash",
     distro: "life-rolling",
-    kernel: "6.19-human-stable (ish)",
-    uptime: "few years, many days",
-    shell: "bash"
+    kernel: "6.19-stable",
+    uptime: "a few years",
+    interests: "systems, game theory, psychology, poker."
 };
 
 
@@ -20,7 +21,7 @@ const commands = {
 
     cat: (args) => {
         if (args === 'README.txt') return "available commands: whoami, ls, cat, note, fastfetch, clear";
-        if (args === 'aliases.txt') return "cax, caxie, cakeson, cake, psy, pxffy, batman";
+        if (args === 'aliases.txt') return "caxon, cax, caxie, cakeson, cake, psy, pxffy, batman";
         if (args === 'secrets.txt') return "1. my password is very tough to guess. try me. (don't actually)\n2. the more i live the more i lose my tolerance (definitely don't try this)\n3. i maintain a mad scientist's diary and a dream journal irl (ask for sneak peeks)\n4. i once rm rf-ed a live system (DEFINITELY do not try this)\n5. i like pixel art\n6. my ip address is 192.168.0.1 (LOL)";
         return `File not found: ${args}`;
     },
@@ -182,6 +183,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
