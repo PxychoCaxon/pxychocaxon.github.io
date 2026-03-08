@@ -4,7 +4,7 @@ const config = {
     distro: "life-rolling",
     kernel: "6.19-stable",
     uptime: "a few years",
-    interests: "systems, game theory, psychology, poker, journaling."
+    likes: "systems, game theory, psychology, poker, journaling."
 };
 
 
@@ -86,7 +86,8 @@ function displayFastFetch() {
 <div><b>OS</b>: ${config.distro}</div>
 <div><b>KERNEL</b>: ${config.kernel}</div>
 <div><b>UPTIME</b>: ${config.uptime}</div>
-<div><b>SHELL</b>: ${config.shell}</div>`.trim();
+<div><b>SHELL</b>: ${config.shell}</div>
+<div><b>INTERESTS</b>: ${config.interests}</div>`.trim();
 
     const div = document.createElement('div');
     div.className = 'fastfetch';
@@ -183,3 +184,4 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
