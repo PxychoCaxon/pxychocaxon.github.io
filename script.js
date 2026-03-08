@@ -1,6 +1,6 @@
 const config = {
     user: "caxon",
-    shell: "bash",
+    shell: "bash <div><b>SHELL</b>: ${config.shell}</div>",
     distro: "life-rolling",
     kernel: "6.19-stable",
     uptime: "a few years",
@@ -86,7 +86,6 @@ function displayFastFetch() {
 <div><b>OS</b>: ${config.distro}</div>
 <div><b>KERNEL</b>: ${config.kernel}</div>
 <div><b>UPTIME</b>: ${config.uptime}</div>
-<div><b>SHELL</b>: ${config.shell}</div>
 <div><b>LIKES</b>: ${config.likes}</div>`.trim();
 
     const div = document.createElement('div');
@@ -184,5 +183,6 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
