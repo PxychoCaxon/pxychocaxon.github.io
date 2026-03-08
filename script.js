@@ -4,7 +4,7 @@ const config = {
     distro: "life-rolling",
     kernel: "6.19-stable",
     uptime: "a few years",
-    interests: "systems, game theory, psychology, poker."
+    interests: "systems, game theory, psychology, poker, journaling."
 };
 
 
@@ -183,6 +183,7 @@ function initMatrix() {
     });
     setInterval(draw, 35);
 }
+
 
 
 
