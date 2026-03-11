@@ -21,32 +21,69 @@ body {
 /* FIX: Mobile Blocker does not break PC UI */
 #mobile-blocker {
     display: none;
-    position: fixed; 
-    top: 0; left: 0; width: 100%; height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     background: #000;
     z-index: 10000;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    #mobile-blocker { display: flex; }
-    .terminal-window, .crt-overlay, #matrix-canvas { display: none !important; }
+/* Fancy text styling restored */
+.glitch {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    color: #ffffff;
+    letter-spacing: 2px;
 }
 
+.sub-text {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Mobile detection */
+@media (max-width: 768px) {
+    #mobile-blocker { display: flex; }
+    .terminal-window,
+    .crt-overlay,
+    #matrix-canvas { display: none !important; }
+}
+
+/* Background matrix canvas */
 #matrix-canvas {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     z-index: -1;
 }
 
+/* CRT overlay */
 .crt-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.03));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%),
+        linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01), rgba(255,255,255,0.03));
+
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
     z-index: 10;
@@ -130,3 +167,4 @@ input {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
