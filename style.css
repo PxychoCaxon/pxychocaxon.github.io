@@ -26,17 +26,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-
     background: #000;
     z-index: 10000;
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-/* Fancy text styling restored */
 .glitch {
     font-size: 1.2rem;
     font-weight: bold;
@@ -53,7 +50,6 @@ body {
     font-size: 0.8rem;
 }
 
-/* Mobile detection */
 @media (max-width: 768px) {
     #mobile-blocker { display: flex; }
     .terminal-window,
@@ -61,29 +57,24 @@ body {
     #matrix-canvas { display: none !important; }
 }
 
-/* Background matrix canvas */
 #matrix-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     z-index: -1;
 }
 
-/* CRT overlay */
 .crt-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     background:
         linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%),
         linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01), rgba(255,255,255,0.03));
-
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
     z-index: 10;
@@ -128,12 +119,6 @@ body {
     scrollbar-color: var(--border-color) transparent;
 }
 
-/* Boot Sequence Styling */
-.boot-line { font-size: 0.85rem; margin-bottom: 4px; color: rgba(255,255,255,0.5); }
-.boot-ok { color: #55ff55; font-weight: bold; margin-right: 10px; }
-.boot-logo { margin-bottom: 20px; font-weight: bold; line-height: 1.2; }
-
-/* Active Terminal Styling */
 .hidden { display: none !important; }
 .user-line { margin-top: 15px; animation: fadeIn 0.1s ease-out forwards; }
 .command-output { margin: 8px 0 15px 0; animation: fadeIn 0.25s ease-out forwards; line-height: 1.6; color: #dddddd; }
@@ -167,4 +152,3 @@ input {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
