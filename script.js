@@ -9,46 +9,6 @@ const config = {
 
 const _0x1a2b = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ2NzkwMzI0MTA1MTMwODE5Mi9PM2NLeHlkeWNSVDVvZXM1VjBmYXZ1dTFQV0U1SkpwMGc4RXBsRG93TmFyOGt5ZGhMUE1oTzhVTnNDQTRWbTJzOG03SA==";
 
-const bootLogo = `            /$$$$$$   /$$$$$$ 
-           /$$__  $$ /$$__  $$
- /$$   /$$| $$  \\ $$| $$  \\__/
-|  $$ /$$/| $$  | $$|  $$$$$$ 
- \\  $$$$/ | $$  | $$ \\____  $$
-  >$$  $$ | $$  | $$ /$$  \\ $$
- /$$/\\  $$|  $$$$$$/|  $$$$$$/
-|__/  \\__/ \\______/  \\______/ °
-                              `;
-
-const bootMessages = [
-"[    0.000000] Booting Linux kernel 6.19-stable (cometxOS)",
-"[    0.001120] Detected CPU: GenuineIntel(R) Core(TM) i7 @ 3.40GHz",
-"[    0.002411] Initializing memory management subsystem",
-"[    0.004392] ACPI: Early table checksum verification disabled",
-"[    0.006112] PCI: Scanning bus for devices...",
-"[    0.009214] Detected NVMe controller at 0000:01:00.0",
-"[    0.011298] Loading kernel modules: virtio, nvme, ext4, drm",
-"[    0.014881] Initializing virtual filesystem layer",
-"[    0.018220] Mounting root filesystem on /dev/nvme1n1p2",
-"[    0.021742] EXT4-fs: mounted filesystem with ordered data mode",
-"[    0.024300] Starting systemd 255 (cometx build)",
-"[    0.028611] Created slice: system.slice",
-"[    0.031244] Created slice: user.slice",
-"[    0.034212] Reached target: Local File Systems",
-"[    0.038120] Starting Journal Service...",
-"[    0.042314] Starting Network Manager...",
-"[    0.046191] Starting Random Seed Service...",
-"[    0.049772] Starting Matrix Background Engine...",
-"[    0.053600] Bringing up network interface: eth0",
-"[    0.058112] eth0: link up, 1Gbps full-duplex",
-"[    0.061480] Reached target: Network",
-"[    0.065314] Starting Comet UI Interface...",
-"[    0.069442] Loading user environment...",
-"[    0.072331] Reached target: Multi-User System",
-"[    0.076882] cometxOS login services ready"
-];
-
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 const input = document.getElementById('command-input');
 const output = document.getElementById('output');
 const terminalBody = document.getElementById('terminal-body');
@@ -117,41 +77,6 @@ const commands = {
         }
     }
 };
-
-/* ---------------- BOOT SEQUENCE ---------------- */
-
-async function runBootSequence() {
-
-    const logoPre = document.createElement('pre');
-    logoPre.className = 'boot-logo';
-    logoPre.innerText = bootLogo;
-    output.appendChild(logoPre);
-
-    await sleep(1500);
-
-    for (const msg of bootMessages) {
-
-        const line = document.createElement('div');
-        line.className = 'boot-line';
-        line.innerHTML = `<span class="boot-ok">[  OK  ]</span> ${msg}`;
-        output.appendChild(line);
-
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-
-        await sleep(Math.random() + 50);
-    }
-
-    await sleep(1200);
-
-    output.innerHTML = '';
-
-    displayFastFetch();
-
-    if (inputContainer) {
-        inputContainer.classList.remove('hidden');
-        input.focus();
-    }
-}
 
 /* ---------------- FASTFETCH ---------------- */
 
@@ -299,5 +224,10 @@ function initMatrix() {
 
 window.onload = () => {
     initMatrix();
-    runBootSequence();
+    displayFastFetch();
+
+    if (inputContainer) {
+        inputContainer.classList.remove('hidden');
+        input.focus();
+    }
 };
